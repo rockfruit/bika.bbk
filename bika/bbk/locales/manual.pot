@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Bika-LIMS\n"
+"POT-Creation-Date: 2012-01-01 23:11+0000\n"
+"PO-Revision-Date: 2012-01-01 23:11+0000\n"
+"Last-Translator: Bika <anneline@bikalabs.com>\n"
+"Language-Team: Bika <support@bikalabs.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+## Entries in this file are added to or overridden in
+## 'bika' and 'plone' domains for any site using this
+## product.
+

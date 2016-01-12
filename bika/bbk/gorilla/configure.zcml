@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="bika">
+
+  <monkey:patch
+      description="Allow field default value acquisition with IAcquireFieldDefaults"
+      class="Products.Archetypes.Schema.BasicSchema"
+      original="setDefaults"
+      replacement=".Schema.setDefaults"
+      />
+  
+  <monkey:patch
+      description="Print Cultivar instead of SampleType in Worksheet views"
+      class="bika.lims.content.sample.Sample"
+      original="getSampleTypeTitle"
+      replacement="bika.bbk.gorilla.worksheet_cultivar.getSampleTypeTitle"
+      />
+
+</configure>
+
