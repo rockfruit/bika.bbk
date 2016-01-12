@@ -6,7 +6,7 @@ def getSampleTypeTitle(sample):
     of the SampleType's title. BBK considers this really important.
     """
     sampletype = sample.getField('SampleType').get(sample)
-    st_title = sampletype.Title()
+    st_title = sampletype.Title() if sampletype else ''
     if sample.REQUEST['PARENTS'][0].portal_type == 'Worksheet':
         cultivar = sample.getField('Cultivar').get(sample)
         if cultivar:
