@@ -17,17 +17,6 @@ def setDefaults(self, instance):
     # # TODO think about layout/vs dyn defaults
     for field in self.values():
 
-        # if analysis request, set sample type to default to 'other' 
-        value = None
-        if field.getName().lower() == 'sampletype' \
-                and instance.portal_type == 'AnalysisRequest':
-            bc = instance.bika_setup_catalog
-            try:
-                proxy = bc(title="Other")[0]
-                value = proxy.getObject()
-            except IndexError:
-                value = None
-
         # if analysis request, set sampling date to default to today
         if field.getName().lower() == 'samplingdate' \
                 and instance.portal_type == 'AnalysisRequest':
