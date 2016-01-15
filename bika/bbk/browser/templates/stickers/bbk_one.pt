@@ -1,0 +1,54 @@
+<!--
+https://jira.bikalabs.com/browse/WINE-97
+-->
+<tal:sticker define="
+    item              view/current_item;
+    ar                python:item[0];
+    sample            python:item[1];
+    client            python:sample.aq_parent;
+    SampleType        python:sample.getSampleType();
+    SampleType        python:SampleType.Title() if SampleType else '';
+    SamplingDate      python:ar.getSamplingDate();
+    SamplingDate      python:SamplingDate.Date() if SamplingDate else '';
+    DateReceived      python:ar.getDateReceived();
+    DateReceived      python:DateReceived.Date() if DateReceived else '';
+    CSID              python:sample.getClientSampleID();
+    ClientReference   python:sample.getClientReference();
+    Cultivar          python:sample.Schema().getField('Cultivar').get(sample);
+    Cultivar          python:Cultivar.Title() if Cultivar else '';
+    Tank              python:sample.Schema().getField('Tank').get(sample);
+    analyses          python:ar.getAnalyses(cancellation_state='active', full_objects=1);">
+
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="center" colspan="4" tal:content="python:client.Title()"/>
+        </tr>
+        <tr>
+            <th i18n:translate="">ID</th>
+            <td><strong tal:content="sample/id"/></td>
+            <th i18n:translate="">Type</th>
+            <td tal:content="SampleType"/>
+        </tr>
+        <tr>
+            <th i18n:translate="">Client ID</th>
+            <td tal:content="sample/getClientSampleID"/>
+            <th i18n:translate="">Client ref</th>
+            <td tal:content="ClientReference"/>
+        </tr>
+        <tr>
+            <th i18n:translate="">Sampling Date</th>
+            <td tal:content="SamplingDate"/>
+            <th i18n:translate="">Cultivar</th>
+            <td tal:content="Cultivar"/>
+        </tr>
+        <tr>
+            <th i18n:translate="">Date received</th>
+            <td tal:content="DateReceived"/>
+            <th i18n:translate="">Tank</th>
+            <td tal:content="Tank"/>
+        </tr>
+        <tr tal:repeat="analysis analyses">
+            <td colspan="4" tal:content="python:analysis.getService().Title()"/>
+        </tr>
+    </table>
+</tal:sticker>

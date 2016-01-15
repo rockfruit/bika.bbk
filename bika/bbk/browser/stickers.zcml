@@ -8,7 +8,7 @@
    <plone:static
       directory="templates/stickers"
       type="stickers"
-      name="bbk"
+      name="bika.bbk"
     />
 
 
