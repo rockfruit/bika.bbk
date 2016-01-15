@@ -1,8 +1,8 @@
 .sticker {
     font-family: Helvetica, Arial;
-    font-size:6pt;
+    font-size:12pt;
     /* Total width: 70mm + 2x1mm = 72mm */
-    padding:1mm; width: 70mm;
+    padding:1mm; width: 140mm;
 }
 .sticker .sample-id {
     height: 5mm;
@@ -11,7 +11,7 @@
 table {
     border-collapse:collapse;
     margin: 1px 1px 1px 1px;
-    font-size: 6pt;
+    font-size: 12pt;
     width:100%;
 }
 th {

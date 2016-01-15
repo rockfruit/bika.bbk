@@ -36,19 +36,26 @@ https://jira.bikalabs.com/browse/WINE-97
             <td tal:content="ClientReference"/>
         </tr>
         <tr>
-            <th i18n:translate="">Sampling Date</th>
+            <th i18n:translate="">Sampled</th>
             <td tal:content="SamplingDate"/>
             <th i18n:translate="">Cultivar</th>
             <td tal:content="Cultivar"/>
         </tr>
         <tr>
-            <th i18n:translate="">Date received</th>
+            <th i18n:translate="">Received</th>
             <td tal:content="DateReceived"/>
             <th i18n:translate="">Tank</th>
             <td tal:content="Tank"/>
         </tr>
-        <tr tal:repeat="analysis analyses">
-            <td colspan="4" tal:content="python:analysis.getService().Title()"/>
+
+        <tr tal:repeat="i python:range(0, len(analyses), 2)">
+            <td colspan="2"
+                tal:content="python:analyses[i].Title() if i < len(analyses) else ''">
+            </td>
+            <td colspan="2"
+                tal:content="python:analyses[i+1].Title() if i+1 < len(analyses) else ''">
+            </td>
         </tr>
+
     </table>
 </tal:sticker>
