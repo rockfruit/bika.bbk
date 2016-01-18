@@ -8,7 +8,7 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="bika.bbk">
 
-  <include file="stickers.zcml"/>
+  <include package=".stickers"/>
   <plone:static
        directory="templates"
        type="reports"

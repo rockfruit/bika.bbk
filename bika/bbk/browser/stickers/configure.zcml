@@ -6,7 +6,7 @@
     i18n_domain="bika">
 
    <plone:static
-      directory="templates/stickers"
+      directory="templates"
       type="stickers"
       name="bika.bbk"
     />
