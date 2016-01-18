@@ -118,29 +118,29 @@
      <permission value="BIKA: Manage Invoices"/>
  </action>
 
- <action title="Large Sticker"
-         action_id="sticker_large"
-         category="document_actions"
-         condition_expr=""
-         icon_expr="string:${object_url}/++resource++bika.lims.images/sticker_large.png"
-         link_target=""
-         url_expr="string:${object_url}/sticker?template=bika.lims:sticker_large.pt"
-         i18n:attributes="title"
-         visible="False">
-     <permission value="View"/>
- </action>
+ <!--<action title="Large Sticker"-->
+         <!--action_id="sticker_large"-->
+         <!--category="document_actions"-->
+         <!--condition_expr=""-->
+         <!--icon_expr="string:${object_url}/++resource++bika.lims.images/sticker_large.png"-->
+         <!--link_target=""-->
+         <!--url_expr="string:${object_url}/sticker?template=bika.lims:sticker_large.pt"-->
+         <!--i18n:attributes="title"-->
+         <!--visible="False">-->
+     <!--<permission value="View"/>-->
+ <!--</action>-->
 
- <action title="Small Sticker"
-         action_id="sticker_small"
-         category="document_actions"
-         condition_expr=""
-         icon_expr="string:${object_url}/++resource++bika.lims.images/sticker_small.png"
-         link_target=""
-         url_expr="string:${object_url}/sticker?template=bika.lims:sticker_small.pt"
-         i18n:attributes="title"
-         visible="False">
-     <permission value="View"/>
- </action>
+ <!--<action title="Small Sticker"-->
+         <!--action_id="sticker_small"-->
+         <!--category="document_actions"-->
+         <!--condition_expr=""-->
+         <!--icon_expr="string:${object_url}/++resource++bika.lims.images/sticker_small.png"-->
+         <!--link_target=""-->
+         <!--url_expr="string:${object_url}/sticker?template=bika.lims:sticker_small.pt"-->
+         <!--i18n:attributes="title"-->
+         <!--visible="False">-->
+     <!--<permission value="View"/>-->
+ <!--</action>-->
 
  <action title="Custom Sticker"
          action_id="sticker_custom"
@@ -148,7 +148,7 @@
          condition_expr=""
          icon_expr="string:${object_url}/++resource++bika.lims.images/sticker_small.png"
          link_target=""
-         url_expr="string:${object_url}/sticker?template=bika.bbk:sticker_large.pt"
+         url_expr="string:${object_url}/sticker?template=bika.bbk:bbk_one.pt"
          i18n:attributes="title"
          visible="True">
      <permission value="View"/>
