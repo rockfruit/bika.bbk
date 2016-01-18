@@ -50,10 +50,10 @@ https://jira.bikalabs.com/browse/WINE-97
 
         <tr tal:repeat="i python:range(0, len(analyses), 2)">
             <td colspan="2"
-                tal:content="python:analyses[i].Title() if i < len(analyses) else ''">
+                tal:content="python:' '.join(analyses[i].getService().Title().split(':')[1:]) if i < len(analyses) else ''">
             </td>
             <td colspan="2"
-                tal:content="python:analyses[i+1].Title() if i+1 < len(analyses) else ''">
+                tal:content="python:' '.join(analyses[i+1].getService().Title().split(':')[1:]) if i+1 < len(analyses) else ''">
             </td>
         </tr>
 
