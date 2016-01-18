@@ -17,6 +17,8 @@ def setDefaults(self, instance):
     # # TODO think about layout/vs dyn defaults
     for field in self.values():
 
+        value = None
+
         # if analysis request, set sampling date to default to today
         if field.getName().lower() == 'samplingdate' \
                 and instance.portal_type == 'AnalysisRequest':
