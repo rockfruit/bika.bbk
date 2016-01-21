@@ -3,8 +3,8 @@ https://jira.bikalabs.com/browse/WINE-97
 -->
 <tal:sticker define="
     item              view/current_item;
-    ar                python:item[0];
     sample            python:item[1];
+    ar                python:sample.getAnalysisRequests()[0];
     client            python:sample.aq_parent;
     SampleType        python:sample.getSampleType();
     SampleType        python:SampleType.Title() if SampleType else '';
