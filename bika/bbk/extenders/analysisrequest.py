@@ -55,6 +55,35 @@ class AnalysisRequestSchemaModifier(object):
         schema['Priority'].widget.visible = False
         schema['Sampler'].widget.visible = False
 
+        # BBK Wants these fields to be editable in states < verified:
+        permissive_fields = ['Cultivar',
+                             'Vintage',
+                             'Tank',
+                             'SamplingDate',
+                             'SampleType',
+                             'ClientReference',
+                             'ClientSampleID']
+        for fieldname in permissive_fields:
+            field = schema[fieldname]
+            field.widget.visible = \
+                {'edit': 'visible',
+                 'view': 'visible',
+                 'add': 'edit',
+                 'secondary': 'disabled',
+                 'header_table': 'visible',
+                 'sample_registered': {'view': 'visible', 'edit': 'visible', 'add': 'edit'},
+                 'to_be_sampled':     {'view': 'visible', 'edit': 'visible'},
+                 'sampled':           {'view': 'visible', 'edit': 'visible'},
+                 'to_be_preserved':   {'view': 'visible', 'edit': 'visible'},
+                 'sample_due':        {'view': 'visible', 'edit': 'visible'},
+                 'sample_received':   {'view': 'visible', 'edit': 'visible'},
+                 'attachment_due':    {'view': 'visible', 'edit': 'visible'},
+                 'to_be_verified':    {'view': 'visible', 'edit': 'visible'},
+                 'verified':          {'view': 'visible', 'edit': 'invisible'},
+                 'published':         {'view': 'visible', 'edit': 'invisible'},
+                 'invalid':           {'view': 'visible', 'edit': 'invisible'},
+                 }
+
         schema.moveField('Tank', before='Sample')
         schema.moveField('Vintage', before='Tank')
         schema.moveField('Cultivar', before='Vintage')
