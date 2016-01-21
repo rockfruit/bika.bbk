@@ -11,10 +11,11 @@ table {
 th {
     text-align: left;
     text-transform: none;
-    border: none;
-    padding:none;
+    border: 1px solid black;
+    padding:0 2mm 0 2mm;
 }
 td {
-    border: none;
+    border: 1px solid black;
     padding: none;
+    padding:0 2mm 0 2mm;
 }
