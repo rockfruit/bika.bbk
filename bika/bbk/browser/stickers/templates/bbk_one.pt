@@ -2,8 +2,7 @@
 https://jira.bikalabs.com/browse/WINE-97
 -->
 <tal:sticker define="
-    item              view/current_item;
-    sample            python:item[1];
+    sample            python:view.current_item;
     ar                python:sample.getAnalysisRequests()[0];
     client            python:sample.aq_parent;
     SampleType        python:sample.getSampleType();
@@ -17,15 +16,17 @@ https://jira.bikalabs.com/browse/WINE-97
     Cultivar          python:sample.Schema().getField('Cultivar').get(sample);
     Cultivar          python:Cultivar.Title() if Cultivar else '';
     Tank              python:sample.Schema().getField('Tank').get(sample);
-    analyses          python:ar.getAnalyses(cancellation_state='active', full_objects=1);">
+    analyses          python:ar.getAnalyses(cancellation_state='active', review_state='sample_received', full_objects=1);">
 
     <table cellpadding="0" cellspacing="0">
         <tr>
-            <td align="center" colspan="4" tal:content="python:client.Title()"/>
+            <td align="center"
+                class="client"
+                colspan="4" tal:content="python:client.Title()"/>
         </tr>
         <tr>
             <th i18n:translate="">ID</th>
-            <td><strong tal:content="sample/id"/></td>
+            <td tal:content="sample/id"/>
             <th i18n:translate="">Type</th>
             <td tal:content="SampleType"/>
         </tr>
@@ -47,15 +48,19 @@ https://jira.bikalabs.com/browse/WINE-97
             <th i18n:translate="">Tank</th>
             <td tal:content="Tank"/>
         </tr>
+    </table>
 
+    <table cellpadding="0" cellspacing="0" class="analyses">
         <tr tal:repeat="i python:range(0, len(analyses), 2)">
             <td colspan="2"
+                class="analysis"
                 tal:content="python:' '.join(analyses[i].getService().Title().split(':')[1:]) if i < len(analyses) else ''">
             </td>
             <td colspan="2"
+                class="analysis"
                 tal:content="python:' '.join(analyses[i+1].getService().Title().split(':')[1:]) if i+1 < len(analyses) else ''">
             </td>
         </tr>
-
     </table>
+
 </tal:sticker>

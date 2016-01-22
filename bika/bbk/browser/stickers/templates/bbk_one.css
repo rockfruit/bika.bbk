@@ -1,21 +1,36 @@
-.sticker {
-    font-family: Helvetica, Arial;
+@page {
+    size: 127mm 100mm;
+    margin: 5mm;
 }
-.sticker .sample-id {
-    text-align:center;
+body {
+    font-family: Helvetica, Arial;
+    font-size:12pt !important;
+    color:#000 !important;
 }
 table {
     border-collapse:collapse;
-    margin: none;
+    width:100%;
 }
 th {
     text-align: left;
-    text-transform: none;
-    border: 1px solid black;
-    padding:0 2mm 0 2mm;
+    border: 1px solid #aaa;
+    padding:0.5mm 2mm 0.5mm 2mm;
 }
 td {
-    border: 1px solid black;
-    padding: none;
-    padding:0 2mm 0 2mm;
+    border: 1px solid #aaa;
+    padding:0.5mm 2mm 0.5mm 2mm;
+    color:#000 !important;
+}
+td.client {
+    text-align:center;
+    color:#000 !important;
+}
+
+table.analyses{
+    margin-top:1mm;
+}
+
+table.analyses td{
+    text-align:center;
+    color:#000 !important;
 }
