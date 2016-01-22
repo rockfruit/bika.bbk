@@ -140,9 +140,8 @@
       <tr>
         <th i18n:translate="" colspan="5">Tank No</th>
         <tal:ar repeat="ar ars">
-        <tal:tankno define="tankno python:ar.getSample().getSamplePoint();
-                            tanktitletitle python:tankno.title if tankno else ''">
-        <td class="tankno" tal:content="python:ar.getSample().getSamplePointTitle()"></td>
+        <tal:tankno define="tank python:ar.Schema().getField('Tank').get(ar);">
+        <td class="tankno" tal:content="tank"></td>
         </tal:tankno>
         </tal:ar>
       </tr>
