@@ -6,6 +6,19 @@
     font: 9pt Arial, Verdana, serif;
 }
 
+#report .page-header{
+    max-height:20mm;
+}
+
+#report .page-header img{
+    max-height:19mm;
+}
+
+#report .page-header table{
+    padding:0;
+    margin:0;
+}
+
 #report h1 { font-size:1.4em; }
 #report h2 { font-size:1.2em; }
 #report h3 { font-size:1.1em; }
