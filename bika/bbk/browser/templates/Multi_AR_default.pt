@@ -15,7 +15,7 @@
     https://github.com/bikalabs/Bika-LIMS/wiki/Creating-new-report-templates
 
 -->
-<tal:report tal:define="num_ars_per_page python:4;
+<tal:report tal:define="num_ars_per_page python:context.bika_setup.getBatchEmail();
                         argroup python:view.getAnalysisRequestGroup();
                         arspage python:[argroup[i:i+num_ars_per_page] for i in range(0,len(argroup),num_ars_per_page)];">
   <tal:page_iter repeat="ars arspage">
@@ -50,15 +50,8 @@
               </a>
             </div>
         </td>
-        <td width="50%" style="text-align:right;">
-            <div id="accreditation-logo"
-                tal:condition="python:laboratory['accredited']==True">
-                <img tal:condition="laboratory/accreditation_logo"
-                     tal:attributes="src laboratory/accreditation_logo/absolute_url"/>
-                <img tal:condition="not:laboratory/accreditation_logo"
-                     tal:attributes="src string:${portal/url}/++resource++bika.lims.images/AccreditationBodyLogo.png"/>
-            </div>
-        </td>
+        <td width="50%" class="labaddresss">
+            <span tal:replace="structure laboratory/address"/>
     </table>
   </div>
 
@@ -101,7 +94,7 @@
     <table width="100%" cellpadding="0" cellspacing="0">
       <!-- Sample ID -->
       <tr>
-        <th i18n:translate="" colspan="5">Sample ID</th>
+        <th i18n:translate="" colspan="2">Sample ID</th>
         <tal:ar repeat="ar ars">
         <th tal:attributes="id ar/id;uid ar/UID;" class="sampleid">
             <a tal:attributes="href python:ar.absolute_url()"
@@ -111,14 +104,14 @@
       </tr>
       <!-- Sample Type -->
       <tr>
-        <th i18n:translate="" colspan="5">Sample Type</th>
+        <th i18n:translate="" colspan="2">Sample Type</th>
         <tal:ar repeat="ar ars">
         <td class="sampletype" tal:content="python:ar.getSample().getSampleType().title"></td>
         </tal:ar>
       </tr>
       <!-- Cultivar -->
       <tr>
-        <th i18n:translate="" colspan="5">Cultivar</th>
+        <th i18n:translate="" colspan="2">Cultivar</th>
         <tal:ar repeat="ar ars">
         <tal:cultivar define="cultivar python:ar.getSample().Schema()['Cultivar'].get(ar.getSample());
                               cultivartitle python:cultivar.title if cultivar else ''">
@@ -128,7 +121,7 @@
       </tr>
       <!-- Vintage -->
       <tr>
-        <th i18n:translate="" colspan="5">Vintage</th>
+        <th i18n:translate="" colspan="2">Vintage</th>
         <tal:ar repeat="ar ars">
         <tal:vintage define="vintage python:ar.getSample().Schema()['Vintage'].get(ar.getSample());
                              vintagetitle python:vintage.title if vintage else ''">
@@ -138,7 +131,7 @@
       </tr>
       <!-- Tank No -->
       <tr>
-        <th i18n:translate="" colspan="5">Tank No</th>
+        <th i18n:translate="" colspan="2">Tank No</th>
         <tal:ar repeat="ar ars">
         <tal:tankno define="tank python:ar.Schema().getField('Tank').get(ar);">
         <td class="tankno" tal:content="tank"></td>
@@ -147,49 +140,45 @@
       </tr>
       <!-- Client Sample ID -->
       <tr>
-        <th i18n:translate="" colspan="5">Client Sample ID</th>
+        <th i18n:translate="" colspan="2">Client Sample ID</th>
         <tal:ar repeat="ar ars">
         <td class="clientsampleid" tal:content="python:ar.getClientSampleID()"></td>
         </tal:ar>
       </tr>
       <!-- Client ID -->
       <tr>
-        <th i18n:translate="" colspan="5">Reference</th>
+        <th i18n:translate="" colspan="2">Reference</th>
         <tal:ar repeat="ar ars">
         <td class="clientref" tal:content="python:ar.getClientReference()"></td>
         </tal:ar>
       </tr>
       <!-- Tests/results -->
       <tr>
-          <td class="blank-row" tal:attributes="colspan python:len(ars)+5;"></td>
+          <td class="blank-row" tal:attributes="colspan python:len(ars)+2;"></td>
       </tr>
       <tr>
-        <th i18n:translate="">Category</th>
-        <th i18n:translate="">Analysis</th>
-        <th>+/-</th>
-        <th i18n:translate="">Unit</th>
-        <th i18n:translate="">Method</th>
+        <th class="analysis" i18n:translate="">Analysis</th>
+        <th class="uncertainty">+/-</th>
         <tal:resultcols repeat="ar ars">
         <th i18n:translate="" class="result">Result</th>
         </tal:resultcols>
       </tr>
       <tal:cats repeat="cat python:sorted(transposed.keys())">
-      <tr>
-        <td class="category" tal:content="cat" tal:attributes="rowspan python:len(transposed[cat].keys())+1"></td>
-      </tr>
       <tr tal:repeat="service python:sorted(transposed[cat].keys())">
         <td tal:define="accredited python:transposed[cat][service]['service'].getAccredited()"
             tal:attributes="class python:'service %s' % ('accredited' if accredited else 'no-accredited')"
-            tal:content="python:'%s%s' % (service.replace(cat+':', '').strip(), '' if accredited else '*')"></td>
+            tal:content="python:'%s%s' % (service, '' if accredited else '*')"></td>
         <td class="uncertainty"></td>
-        <td class="unit" tal:content="python:transposed[cat][service]['service'].getUnit()"></td>
-        <td class="method" tal:content="python:transposed[cat][service]['service'].getMethod().title if transposed[cat][service]['service'].getMethod() else ''"></td>
         <tal:ar repeat="ar ars">
-        <td class="result" tal:content="python:transposed[cat][service]['ars'].get(ar.id,'')"></td>
+        <td class="result" tal:define="res python:transposed[cat][service]['ars'].get(ar.id,'');
+                                       unit python:transposed[cat][service]['service'].getUnit();">
+            <span tal:replace="res"/>
+            <span class="unit" tal:condition="res" tal:content="unit"/>
+        </td>
         </tal:ar>
       </tr>
       <tr tal:condition="not: repeat/cat/end">
-          <td class="blank-row after-category" tal:attributes="colspan python:len(ars)+5;"></td>
+          <td class="blank-row after-category" tal:attributes="colspan python:len(ars)+2;"></td>
       </tr>
       </tal:cats>
     </table>
@@ -238,6 +227,13 @@
               <span tal:condition="python: rownum % 3 == 0"
                     tal:replace="structure python:'</tr>'"></span>
           </tal:manager>
+      </div>
+      <div class="accreditation-logo"
+          tal:condition="python:laboratory['accredited']==True">
+          <img tal:condition="laboratory/accreditation_logo"
+               tal:attributes="src laboratory/accreditation_logo/absolute_url"/>
+          <img tal:condition="not:laboratory/accreditation_logo"
+               tal:attributes="src string:${portal/url}/++resource++bika.lims.images/AccreditationBodyLogo.png"/>
       </div>
   </div>
 

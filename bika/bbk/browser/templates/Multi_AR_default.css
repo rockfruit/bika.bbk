@@ -3,7 +3,7 @@
  */
 
 #report {
-    font: 9pt Arial, Verdana, serif;
+    font: 8pt Arial, Verdana, serif;
 }
 
 #report .page-header{
@@ -19,15 +19,20 @@
     margin:0;
 }
 
-#report h1 { font-size:1.4em; }
+#report .page-header .labaddress {
+    text-align:right;
+    padding-top:5px;
+}
+
+#report h1 { font-size:1.3em; }
 #report h2 { font-size:1.2em; }
-#report h3 { font-size:1.1em; }
+#report h3 { font-size:1.0em; }
 
 #report h1,
 #report h2,
 #report h3 {
     font-weight:bold;
-    padding-bottom:5px !important;
+    padding-bottom:2.5px !important;
 }
 
 #report table {
@@ -41,23 +46,23 @@
 }
 #report .label {
     font-weight:bold;
-    padding-right: 10px;
+    padding-right: 5px;
 }
 #report .outofrange,
 #report .outofrange a {
     font-weight:bold;
     color:#d40000;
 }
-#report .units,
-#report .units sub,
-#report .units sup {
+#report .unit,
+#report .unit sub,
+#report .unit sup {
     color:#777;
     font-weight:normal;
     font-style:italic;
 }
-#report .units sub,
-#report .units sup {
-    font-size:7pt;
+#report .unit sub,
+#report .unit sup {
+    font-size:6pt;
 }
 #report .page-footer table {
     border-top: 1px solid #aaaaaa;
@@ -65,19 +70,21 @@
     width: 100%;
 }
 #report div#section-info {
-    padding: 30px 0 20px;
 }
 #report div#section-info h1 {
     font-size:13pt;
     text-align:center;
     font-weight:bold;
+    padding:0 !important;
+    margin:10px;
 }
 #report div#section-info table tr td {
-    padding: 4px;
+    padding: 2px;
     vertical-align: top;
 }
 #report #ar-grid {
     font-size:8pt;
+    margin-top:10px;
 }
 #report #ar-grid th {
     padding: 5px 3px;
@@ -94,8 +101,11 @@
   padding:3px;
 }
 #report #ar-grid th.sampleid,
-#report #ar-grid td.category {
+#report #ar-grid th.analysis,
+#report #ar-grid th.result,
+#report #ar-grid th.uncertainty {
   background-color:#dcdcdc;
+  text-align:center;
 }
 #report #ar-grid th.sampleid a {
   color:#000000;
@@ -103,7 +113,7 @@
 }
 #report #ar-grid td.blank-row {
   border: 0 none;
-  padding: 10px;
+  padding: 5px;
 }
 #report #ar-grid td.blank-row.after-category {
   padding:2px;
@@ -119,10 +129,12 @@
 #report #ar-grid td.result {
   text-align:center;
 }
-#report #ar-grid td.sampleid {
-  font-weight:bold;
-  text-align:center;
+div.manager-info {
+  float:left;
+}
+div.accreditation-logo {
+  float:right;
 }
 #report #section-responsability {
-    font-size:8pt;
+    font-size:7pt;
 }
