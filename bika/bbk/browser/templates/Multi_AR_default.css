@@ -2,6 +2,11 @@
  * Do not use margins, use padding instead
  */
 
+@page {
+    size: 210mm 297mm;
+    margin: 5mm;
+}
+
 #report {
     font: 8pt Arial, Verdana, serif;
 }
@@ -37,12 +42,14 @@
 
 #report table {
     width: 100%;
+    border-collapse: collapse;
 }
 
 #report table tr td,
 #report table tr th {
     text-align:left;
     vertical-align:top;
+    margin:0;
 }
 #report .label {
     font-weight:bold;
@@ -88,16 +95,14 @@
 }
 #report #ar-grid th {
     padding: 5px 3px;
-    border-right:1px solid #cdcdcd;
-    border-bottom:1px solid #cdcdcd;
+    border:1px solid #cdcdcd;
     background-color:#dcdcdc;
 }
 #report #ar-grid th.result {
     text-align:center;
 }
 #report #ar-grid td {
-  border-bottom:1px solid #cdcdcd;
-  border-right:1px solid #cdcdcd;
+  border:1px solid #cdcdcd;
   padding:3px;
 }
 #report #ar-grid th.sampleid,
